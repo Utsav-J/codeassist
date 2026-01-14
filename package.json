@@ -1,0 +1,66 @@
+{
+  "name": "codeassist",
+  "displayName": "CodeAssist",
+  "description": "lets try to build a vs code extensions heh",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.108.0"
+  },
+  "publisher": "Utsav-J",
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": [
+      {
+        "title": "Code Assist: Explain Code",
+        "properties": {
+          "codeassist.geminiAPIKey": {
+            "type": "string",
+            "description": "Gemini API Key",
+            "default": ""
+          }
+        }
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "codeassist.explainCode",
+          "when": "editorHasSelection",
+          "group": "navigation"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "codeassist.helloWorld",
+        "title": "CodeAssist: Hello World"
+      },
+      {
+        "command": "codeassist.explainCode",
+        "title": "CodeAssist: Explain Code"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.108.1",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.39.2",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.52.0"
+  }
+}
